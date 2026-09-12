@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Компоненты — Грань Гранита</title>
+  <link rel="stylesheet" href="../kit.css">
+</head>
+<body>
+  <div class="kit-bar">
+    <div class="container kit-bar__inner">
+      <a href="index.html">← kit</a>
+      <nav>
+        <a href="foundations.html">Основы</a>
+        <a href="components.html">Компоненты</a>
+        <a href="patterns.html">Паттерны</a>
+      </nav>
+    </div>
+  </div>
+
+  <main class="container band">
+    <h1 class="section-header__title">Компоненты</h1>
+
+    <section class="panel">
+      <h2>Кнопки</h2>
+      <p class="badge">как на сайте</p>
+      <p>
+        <button class="btn btn--dark" type="button">Заказать</button>
+        <button class="btn btn--ghost" type="button">Смотреть работы</button>
+        <button class="btn btn--action" type="button">Заказать</button>
+      </p>
+      <p class="kit-note">Слева — hero (тёмная, 16px). Справа — карточка товара (зелёная, ~36px Condensed). Два разных CTA на одну задачу.</p>
+      <p class="badge badge--fix">предложение</p>
+      <p>
+        <button class="btn btn--proposed" type="button">Заказать</button>
+        <button class="btn btn--accent" type="button">Замер бесплатно</button>
+      </p>
+      <p class="kit-note">Один primary из гранита, золото — вторичный акцент (уже есть в ::selection, но нигде не работает как цвет бренда).</p>
+    </section>
+
+    <section class="panel">
+      <h2>Навигация каталога</h2>
+      <div class="catalog-nav" role="navigation" aria-label="Категории">
+        <a class="is-active" href="#">Памятники</a>
+        <a href="#">Ограды</a>
+        <a href="#">Комплексы</a>
+        <a href="#">Столы лавки</a>
+        <a href="#">Цветники и надгробия</a>
+        <a href="#">Аксессуары</a>
+        <a href="#">Фотопортреты</a>
+        <a href="#">Таблички</a>
+      </div>
+      <div class="catalog-nav catalog-nav--sub" aria-label="Подкатегории">
+        <a class="is-active" href="#">Вертикальные</a>
+        <a href="#">Фигурные</a>
+        <a href="#">Резные</a>
+        <a href="#">С крестом</a>
+        <a href="#">Горизонтальные</a>
+        <a href="#">Комбинированные</a>
+        <a href="#">Арка</a>
+        <a href="#">Военным, участникам СВО</a>
+        <a href="#">Гранитные доски</a>
+      </div>
+      <p class="kit-note">Хороший паттерн. На мобиле ряд уезжает в горизонтальный скролл без намёка, что справа ещё пункты.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Чипы размера</h2>
+      <div class="chips" id="sizes">
+        <button type="button" class="chip is-active">80×40×5</button>
+        <button type="button" class="chip">100×50×5</button>
+        <button type="button" class="chip">100×50×8</button>
+        <button type="button" class="chip">120×60×5</button>
+        <button type="button" class="chip">120×60×8</button>
+        <button type="button" class="chip">120×60×10</button>
+        <button type="button" class="chip">120×60×12</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Карточка категории</h2>
+      <div class="grid-3">
+        <a class="catalog-card" href="#">
+          <div class="catalog-card__image"><div class="art-stela"></div></div>
+          <div class="catalog-card__content"><h3 class="catalog-card__title">Памятники</h3></div>
+        </a>
+        <a class="catalog-card" href="#">
+          <div class="catalog-card__image"><div class="art-angel" style="width:160px;aspect-ratio:1;border-radius:16px;"></div></div>
+          <div class="catalog-card__content"><h3 class="catalog-card__title">Ограды на могилу</h3></div>
+        </a>
+        <a class="catalog-card" href="#">
+          <div class="catalog-card__image"><div class="art-stela" style="width:90px;height:160px;border-radius:50% 50% 4px 4px;"></div></div>
+          <div class="catalog-card__content"><h3 class="catalog-card__title">Мемориальные комплексы</h3></div>
+        </a>
+      </div>
+    </section>
+
+    <section class="panel" style="max-width:560px">
+      <h2>Форма</h2>
+      <form action="#" method="post">
+        <div class="form-field">
+          <label class="form-label">Ваше имя <span class="required">*</span></label>
+          <input class="form-input" name="name" placeholder="Введите ваше имя" required>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Телефон <span class="required">*</span></label>
+          <input class="form-input" type="tel" name="phone" placeholder="+7 (___) ___-__-__" required>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Комментарий</label>
+          <textarea class="form-input" name="message" rows="4" placeholder="Комментарий"></textarea>
+        </div>
+        <div class="form-error">Пример ошибки: укажите телефон</div>
+        <p><button class="btn btn--action-sm" type="submit">Отправить</button></p>
+        <p class="kit-note">Focus кольцо зелёное, как кнопка. Для мемориального сайта логичнее золото/гранит — см. :focus-visible в kit.</p>
+      </form>
+    </section>
+  </main>
+  <script>
+    document.getElementById("sizes").addEventListener("click", function (e) {
+      var t = e.target.closest(".chip");
+      if (!t) return;
+      this.querySelectorAll(".chip").forEach(function (c) { c.classList.remove("is-active"); });
+      t.classList.add("is-active");
+    });
+  </script>
+</body>
+</html>
